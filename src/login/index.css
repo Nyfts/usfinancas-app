@@ -1,25 +1,45 @@
+.background {
+  width: 100%;
+  height: 100%;
+  background-color: #7b8f7b;
+  position: fixed;
+}
+
 .login-wrapper {
   width: 400px;
   margin: 200px auto 0;
   display: flex;
   justify-content: center;
+  padding: 30px 30px;
+  border-radius: 20px;
   flex-direction: column;
   align-items: center;
+  box-shadow: 6px 6px 20px 0px #616161;
+  background-color: #fff;
+}
+
+.login-logo {
+  width: 200px;
+  margin-bottom: 30px;
 }
 
 .login-form {
-  display: flex;
-  flex-direction: column;
-  margin-bottom: 40px;
-  align-items: center;
-  justify-content: center;
+  width: 100%;
 }
 
 .input-wrapper {
-  margin: 0 0 10px;
+  margin: 0 0 15px;
 }
 
-.input-title {
-  margin: 0;
-  padding: 0;
+.buttons-wrapper {
+  display: flex;
+  flex-direction: column;
+}
+
+.link-wrapper {
+  display: flex;
+  width: 100%;
+  align-items: center;
+  justify-content: center;
+  margin: 10px 0 0;
 }
