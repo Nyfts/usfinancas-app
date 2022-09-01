@@ -1,6 +1,6 @@
 import { Button, TextField } from '@mui/material';
 import React from 'react';
-import logo from '../assets/logo.png';
+import logo from '../assets/logo.jpeg';
 import './index.css'
 
 export const Login = () => {
