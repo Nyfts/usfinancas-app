@@ -1,22 +1,28 @@
 import { Button, CircularProgress, TextField } from '@mui/material';
 import React, { useState } from 'react';
-import logo from '../assets/logo.jpeg';
-import { useAuth } from '../contexts/auth';
+import { useForm } from 'react-hook-form';
+import logo from '../../assets/logo.jpeg';
+import { useAuth } from '../../contexts/auth';
 import './index.css'
+import { useAlert } from '../../contexts/alert';
+import alertType from '../../enums/alertType';
+import buttonType from '../../enums/alertButtonType';
 
 export const Login = () => {
-  const { signIn } = useAuth();
+  const {handleSubmit, register, formState: {errors}} = useForm();
+  const {signIn} = useAuth();
+  const {showAlertModal} = useAlert();
   const [loading, setLoading] = useState(false);
 
-  const submit = async (e) => {
-    e.preventDefault();
+  const onSubmit = async (data) => {
     setLoading(true);
 
-    await signIn({
-      username: "luan",
-      password: "luan"
-    });
-
+    try {
+      await signIn(data);
+    } catch(e) {
+      console.log(e.message);
+      showAlertModal("Usuário ou senha inválidos", alertType.ERROR, buttonType.CONFIRM, () => {}, () => {});
+    }
     setLoading(false);
   }
 
@@ -29,12 +35,12 @@ export const Login = () => {
             <CircularProgress  color='primary' />
           </div>
         ) : (
-          <form onSubmit={submit} className="login-form">
+          <form onSubmit={handleSubmit(onSubmit)} className="login-form">
             <div className="input-wrapper">
-              <TextField fullWidth id="username" label="Usuário" type="text" />
+              <TextField fullWidth label="Usuário" type="text" helperText={errors.username && 'Usuário inválido'} error={!!errors?.username} {...register("username", {required: true})} />
             </div>
             <div className="input-wrapper">
-              <TextField fullWidth id="password" label="Senha" type="password"/>
+              <TextField fullWidth label="Senha" type="password" helperText={errors.password && 'Senha inválida'} error={!!errors?.password} {...register("password", {required: true})}/>
             </div>
             <div className="buttons-wrapper">
               <Button color="primary" variant="contained" style={{marginBottom: '7px'}} fullWidth type='submit'>Entrar</Button>

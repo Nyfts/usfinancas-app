@@ -1,9 +1,11 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
-import CssBaseline from '@mui/material/CssBaseline';
-import AuthProvider from "./contexts/auth";
-import './index.css';
 import { ThemeProvider, createTheme } from '@mui/material';
+import CssBaseline from '@mui/material/CssBaseline';
+
+import AuthProvider from "./contexts/auth";
+import AlertProvider from './contexts/alert';
+import './index.css';
 import Routes from './routes';
 
 const theme = createTheme({
@@ -23,7 +25,9 @@ root.render(
     <CssBaseline />
     <ThemeProvider theme={theme}>
       <AuthProvider>
-        <Routes />
+        <AlertProvider>
+          <Routes />
+        </AlertProvider>
       </AuthProvider>
     </ThemeProvider>
   </React.StrictMode>
