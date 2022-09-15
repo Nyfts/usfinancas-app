@@ -1,9 +1,10 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import CssBaseline from '@mui/material/CssBaseline';
-import { Login } from './login';
+import AuthProvider from "./contexts/auth";
 import './index.css';
 import { ThemeProvider, createTheme } from '@mui/material';
+import Routes from './routes';
 
 const theme = createTheme({
   palette: {
@@ -21,7 +22,9 @@ root.render(
   <React.StrictMode>
     <CssBaseline />
     <ThemeProvider theme={theme}>
-      <Login />
+      <AuthProvider>
+        <Routes />
+      </AuthProvider>
     </ThemeProvider>
   </React.StrictMode>
 );
