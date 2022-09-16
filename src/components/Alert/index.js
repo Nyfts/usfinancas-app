@@ -6,15 +6,13 @@ import ErrorIcon from '@mui/icons-material/Error';
 
 import alertType from "../../enums/alertType";
 import alertButtonType from "../../enums/alertButtonType";
-import { Warning } from "@mui/icons-material";
+import './index.css';
 
-
-
-export const Alert = ({ message, onConfirm, onDismiss, type, buttonType }) => {
+export default function Alert({ message, onConfirm, onDismiss, type, buttonType }) {
   return (
-    <div>
+    <div style={{padding: 20, backgroundColor: '#f00'}}>
       <div>{switchIcon(type)}</div>
-      <div>{message}</div>
+      <p className="alert-message">{message}</p>
       {switchButton(buttonType, onConfirm, onDismiss)}
     </div>
   );
@@ -51,15 +49,3 @@ function switchButton(type, onConfirm, onDismiss) {
       return;
   }
 }
-
-function AlertMessage({ message, onConfirm, onDismiss, type, buttonType }) {
-  return (
-    <div>
-      <div>{switchIcon(type)}</div>
-      <p>{message}</p>
-      {switchButton(buttonType, onConfirm, onDismiss)}
-    </div>
-  );
-}
-
-export default AlertMessage;
